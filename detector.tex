@@ -1,0 +1,149 @@
+\section{Cosmic Ray Detector}
+
+\subsection{GSU Detector}
+
+At GSU, there are multiple versions of cosmic ray muon detectors which have been developed. The most recent being a three-panel detector, known as the GSU muon telescope, which is a more advanced version of the two-panel detector developed at GSU.  Figure \ref{muonTelescope} shows the most recent telescope prototype, the GSU muon telescope. This detector uses three separate layers of plastic scintillation %(made light tight using black electrical tape? %I would like some more information on this detector...
+held together by aluminum extrusions and acrylic paneling. Uniquely orientated panels at increasing separations of 10cm, 20cm, and 30 cm, allow more extensive data collection as well as coincidence from three different locations. Multi-pixel photon counters (MPPC) screwed on each board collects the data from the scintillating panels and transfers it to a 4-channel or 8-channel MPPC interface board so that it may be converted into a analog signal.
+%-------------------------------------------------------------------------- 
+\begin{figure}[htb]
+\centering
+\includegraphics[width=0.95\textwidth]{images/muonTelescope1.png} 
+\caption{Cosmic ray muon telescopes developed at GSU.}
+\label{muonTelescope}
+\end{figure}
+
+%
+%
+%
+\subsection{MIT Desktop Detector}
+The desktop muon counter designed by developers at MIT is a self-contained, portable detector low in cost, small in scale, and minimizing in power consumption. 
+%These speculations make it ideal for the expansion of cosmic ray detectors at GSU. 
+The original MIT desktop detector uses a 5 x 5 x 1 cm plastic scintillator paired with a 6 x 6 mm$^2$ silicon photomultiplier (SiPM) to detect photons emitted from the absorbed energy (~1-3 MeV/cm) of minimum ionizing muon that passes through the scintillator. 
+%Alpha and beta particles (other ionizing radiation particles) cannot pass through the scintillator unless they are directly on its surface. Gammas will penetrate through the detector. However, the scintillator is machined with a thickness to prevent any light produced from an occurrence from being detected. 
+When a muon passes through the scintillator, the light emitted is captured by the SiPM which makes a measurable voltage pulse. This pulse is then amplified and shaped by the circuit on the main printed circuit board (PCB). Once the signal has been amplified, the amplitude of this pulse can be detected using a peak detector circuit in the main PCB so that count of photons observed by the detector, time of photon arrival, pulse amplitude, and detector dead time can be recorded by using an Arduino Nano.
+
+ A mini-USB to USB connector and laptop can power the detector, and the data can be displayed using Linux, Mac OS Platform, or any executable program. Measurement of the total count, uptime (total runtime), and rate of counts are displayed and updated every second using an OLED screen soldered to the main PCB. Measurable occurrences can be observed visually through the LED that is soldered to the main PCB, and the LED built in the Arduino Nano. The LEDs flash every time the detector registers an event (this could be a detection of a muon or gamma), but only muon events contribute to the total count. There is a BNC connection on the main PCB, which can be used with an oscilloscope to observe raw SiPM pulses and to inject pulses to calibrate the circuit if needed when the SiPM PCB is not connected. 
+
+%%I think most of this^can be taken out.
+
+The desktop muon detectors built by myself and two graduate students, Ernesto Potdevin and Aisha Ahmad I Okmi, use the same components recommended by the MIT group, as well as the Desktop Muon Counter Arduino Code \cite{MIT_Code}. SensL Technologies sent the Nuclear Physics Group at GSU 3 MicroFC-60035-SMT SiPMs to use for our detectors free of charge. Using the PCB Gerber files from the MIT design, we used the manufacturer OSHPark for fabrication and depanelling of the main PCB and SiPM PCB. We use 0805 SMT components electrical components purchased from Digi-Key Electronics. I soldered each electrical component using a reflow solder at 455$^{\circ}$. The design of our detector was modified so that the main PCB is separate from the scintillator and SiPM, using electrical wires to connect the 6-pin connector on the SiPM PCB to the 6-pin header on the main PCB. This allows for open access of the Main PCB and provides future flexibility. 
+\begin{figure}[htb]
+\centering
+\includegraphics[width=0.75\textwidth]{images/FinalDetector_Setup.png} 
+\caption{Assembled MIT version of the muon detector. The detector is being powered through the mini USB connector connected to a laptop.}
+\label{MIT_WrappedScintillator}
+\end{figure}
+
+
+Here are a few pictures and further descriptions of the MIT detector components:
+\begin{itemize}
+\item {\bf Silicon photomultiplier (SiPM)} \\
+The SiPM (see Figure \ref{SiPM}) produces the ADC current pulse in response to the absorption of a photon.  This SiPM provides lowest cross talk and noise. Each SiPM of this model contains 18,980 microcells of size 35\textmu, a series of avalanche photodiodes (ADP) that convert light to electricity, and four pin diodes. Only pin 1 (denoted by the white circle on the top left of silkscreen outlining SiPM shown in Figure \ref{MIT_SiPMPCB}) and pin 3 are used and soldered to the board. The anode paired with a 49.9 \textOmega \ resistor corresponds to the pin 1, and pin 3 connects the other resistors and capacitors on the SiPM circuit. 
+\begin{figure}[htb]
+\centering
+\includegraphics[width=0.60\textwidth]{images/SiPM.png} 
+\caption{SensL SiPM soldered on the circuit board (center).}
+\label{SiPM}
+\end{figure}
+\item {\bf Scintillator} \\
+The dimension of the scintillator for this detector is 14 x 11 x 1 cm, as shown in Figure \ref{MIT_UScintillator}.  The Physics \& Astronomy Shop at GSU machined the scintillator, drilling four holes in a 3 x 3 cm square so that the SiPM PCB may be screwed in using 5/16" number 0 screws. After the scintillator was machined, I polished the scintillator with plastic polish and a piece of blue jean to improve its optical transparency and promote total internal reflection on the walls. This increases overall SiPM photon collection efficiency. After polishing, the scintillator is washed with dish soap and deionized water before being wrapped tight in aluminum foil,leaving an approximately 2 x 2 cm opening to mount the SiPM PCB, and then secured using black vinyl electrical tape (see Figures \ref{MIT_PScintillator} and Figure \ref{MIT_WrappedScintillator}). 
+\begin{figure}[htb]
+\centering
+\includegraphics[width=0.95\textwidth]{images/Scintillator.png} 
+\caption{Unpolished machined plastic scintillator shown to scale.}
+\label{MIT_UScintillator}
+\end{figure}
+\begin{figure}[htb]
+\centering
+\includegraphics[width=0.95\textwidth]{images/ScintoScale.png} 
+\caption{Polished plastic scintillator shown beside the populated SiPM PCB for reference.}
+\label{MIT_PScintillator}
+\end{figure}
+\begin{figure}[htb]
+\centering
+\includegraphics[width=0.75\textwidth]{images/ScintillatorWrapped.png} 
+\caption{Scintillator wrapped in aluminum foil, and secured by black electrical tape with a 2cm x 2cm gap (middle) for the SiPM.}
+\label{MIT_WrappedScintillator}
+\end{figure}
+\item {\bf SiPM PCB } \\
+One muon produces around a few dozen photons. When a microcell of the SiPM absorbs light from an occurrence, it triggers a small discharge of current that will flow from pin 3 to pin 1 and continue into the circuit of the SiPM PCB. The resistors and capacitors connected to pin 3 (see Figure \ref{MIT_SiPMPCB}) are used to filter high-frequency noise in the voltage supply which might manipulate measurements. Resistor R3 (see Figure \ref{MIT_SiPMPCB_POP}) holds the line of current at the ground when no signal is detected. The six pin header shown on the top is used to connect the SiPM PCB to the main PCB. Electrical wires are used for connection to allow separation of the boards. 
+Once the connection for all electrical components was made, pin 1, and 3 of the SiPM are soldered to the back of the SiPM PCB. A small amount of optical grease was applied to the surface of the SiPM before it was mounted to the scintillator. Doing so ensures that the reflective indices of both will match such that light passing through is neither reflected nor refracted. We carefully screwed the SiPM PCB into the aluminum wrapped scintillator making sure not to apply too much pressure (as it could crush the SiPM), and then wrapped the two components using black vinyl electrical tape so that no light can enter or escape. 
+\begin{figure}[htb]
+\centering
+\includegraphics[width=0.75\textwidth]{images/SiPMPCB.png} 
+\caption{The SiPM circuit boards without any electrical components soldered.}
+\label{MIT_SiPMPCB}
+\end{figure}
+\begin{figure}[htb]
+\centering
+\includegraphics[width=0.65\textwidth]{images/PopSiPMPCB.png} 
+\caption{The front SiPM PCB with all electrical components, including the capacitors and resistors(left) connected to pin 3 of the SiPM, the six-pin head which provides connection to the main PCB, and the 49.9 \textOmega \ resistor (right) connected to pin 1. }
+\label{MIT_SiPMPCB_POP}
+\end{figure}
+\item {\bf Main PCB} \\
+The Main PCB (see Figure \ref{MIT_mainPCB}) performs all signal processing and power regulation tasks for the detector. The bottom side of the board (see Figure \ref{MIT_mainPCB_POP}) contains the data acquisition electronics and four pin connector for the OLED screen. The top side of the board (see Figure \ref{MIT_MainSiPMPCB_POP})contains the larger components such as the OLED screen, 16 MHz Arduino Nano ATmega328, the BNC connector, and the six-pin connector. The DC-DC Booster (designed by using Linear Technology Integrated Circuit) transforms the 5 V DC, supplied by connecting the micro USB, to +29.5 V. The six-pin connector, which includes two inputs each for voltage, ground, and signal, takes this biasing voltage from the main PCB to the SiPM PCB, then also transmits the signal from the SiPM back to the main PCB. 
+
+    Once the signal of an occurrence is transmitted back to the main PCB, it is amplified and shaped through the amplifying circuit and peak detector circuit. A factor of 20 amplifies the signal, and high-frequency amplification is omitted by a 5 pF capacitor to account for any possible error and improve voltage response. The amplified pulse is then detected and held at the level of its amplitude long enough so that the Arduino can measure its signal, then it decays and waits for the next event.
+
+    The Arduino Nano is open-source hardware with a clock speed of 16 MHz, input voltage from around 7-12 V, and 32 KB of memory. There are two sets of the 14 digital pins (8 being analog inputs) which can be used for input and outputs, but only 7 are needed for the detector. We chose to remove the upper pins using wire cutters as they do not contribute to the detector. 
+
+From uploading the code \cite{MIT_Code} to the  mircocontroller via micro USB, the trigger threshold on the ADC is set at approximately 23 mV, and the OLED screen and LED lights are programmed. The pulse amplitude from the peak detecting circuit is measured, and the pulse amplitude of the SiPM signal is calculated using the programmed Arduino Nano. The measured data is sent through USB connection to computer. The readout displays the total count of muon particles detected, time stamp in milliseconds, measure amplitude of ADC, calculated SiPM pulse amplitude, and dead time. The dead time is defined as the sum of time it takes the Arduino Nano to preform each operation subtracted by the total run time of the detector. 
+%-------------------------------------------------------------------------- 
+\begin{figure}[htb]
+\centering
+\includegraphics[width=0.98\textwidth]{images/mainPCB.png} 
+\caption{Unpopulated main PCB boards with silkscreen indicating layout of components.}
+\label{MIT_mainPCB}
+\end{figure}
+\begin{figure}[htb]
+\centering
+\includegraphics[width=0.75\textwidth]{images/TopMainSiPMPOP.png} 
+\caption{Front of populated SiPM PCB(left) and main PCB (without LED and OLED screen components) shown side by side.}
+\label{MIT_MainSiPMPCB_POP}
+\end{figure}
+\begin{figure}[htb]
+\centering
+\includegraphics[width=0.65\textwidth]{images/MITMainPCBPOP.png} 
+\caption{Back side of main PCB containing the majority of electrical components. Peak detector circuit (bottom left) connected to the amplifying circuit(right) by the 325 MHz OpAmp manufactured by Linear Technology.}
+\label{MIT_mainPCB_POP}
+\end{figure}
+
+
+\end{itemize}
+
+The desktop muon detectors built by myself and two graduate students, Ernesto Potdevin and Aisha Ahmad I Okmi, use the same components recommended by the MIT group, as well as the Desktop Muon Counter Arduino Code \cite{MIT_Code}. SensL Technologies sent the Nuclear Physics Group at GSU 3 MicroFC-60035-SMT SiPMs to use for our detectors free of charge. Using the PCB Gerber files from the MIT design, we used the manufacturer OSHPark for fabrication and depanelling of the main PCB and SiPM PCB. We use 0805 SMT components electrical components purchased from Digi-Key Electronics. I soldered each electrical component using a reflow solder at 455$^{\circ}$. The design of our detector was modified so that the main PCB is separate from the scintillator and SiPM, using electrical wires to connect the 6-pin connector on the SiPM PCB to the 6-pin header on the main PCB. This seperation allows for open access of the Main PCB and provides future flexibility. 
+\begin{figure}[htb]
+\centering
+\includegraphics[width=0.75\textwidth]{images/FinalDetector_Setup.png} 
+\caption{Assembled MIT version of the muon detector. The detector is being powered through the mini USB connector connected to a laptop.}
+\label{MIT_WrappedScintillator}
+\end{figure}
+
+
+Here are a few pictures and further descriptions of the MIT detector components:
+\begin{itemize}
+\item {\bf Silicon photomultiplier (SiPM)} \\
+The SiPM (see Figure \ref{SiPM}) produces the ADC current pulse in response to the absorption of a photon.  This SiPM provides lowest cross talk and noise. Each SiPM of this model contains 18,980 microcells of size 35\textmu, a series of avalanche photodiodes (ADP) that convert light to electricity, and four pin diodes. Only pin 1 (denoted by the white circle on the top left of silkscreen outlining SiPM shown in Figure \ref{MIT_SiPMPCB}) and pin 3 are used and soldered to the board. The anode paired with a 49.9 \textOmega \ resistor corresponds to the pin 1, and pin 3 connects the other resistors and capacitors on the SiPM circuit. 
+
+%-------------------------------------------------------------------------- 
+\begin{figure}[htb]
+\centering
+\includegraphics[width=0.98\textwidth]{images/mainPCB.png} 
+\caption{Unpopulated main PCB boards with silkscreen indicating layout of components.}
+\label{MIT_mainPCB}
+\end{figure}
+\begin{figure}[htb]
+\centering
+\includegraphics[width=0.75\textwidth]{images/TopMainSiPMPOP.png} 
+\caption{Front of populated SiPM PCB(left) and main PCB (without LED and OLED screen components) shown side by side.}
+\label{MIT_MainSiPMPCB_POP}
+\end{figure}
+\begin{figure}[htb]
+\centering
+\includegraphics[width=0.65\textwidth]{images/MITMainPCBPOP.png} 
+\caption{Back side of main PCB containing the majority of electrical components. Peak detector circuit (bottom left) connected to the amplifying circuit(right) by the 325 MHz OpAmp manufactured by Linear Technology.}
+\label{MIT_mainPCB_POP}
+\end{figure}
+
+
+\end{itemize}

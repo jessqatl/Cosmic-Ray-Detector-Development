@@ -1,0 +1,91 @@
+\documentclass{article}
+\usepackage{authblk}
+\usepackage{float,graphicx}
+\usepackage[figuresright]{rotating}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{makeidx}
+\usepackage{dcolumn}% Align table columns on decimal point
+\usepackage{bm}% bold math
+\usepackage{url}
+\usepackage[toc,page,titletoc]{appendix}
+\usepackage[small,bf]{caption}
+\usepackage{tabulary}
+\usepackage{booktabs,multirow,dcolumn,bigdelim}
+\newcommand{\otoprule}{\midrule[\heavyrulewidth]}
+\usepackage[pdftex,plainpages=false,pdfpagelabels,backref,pdfborder={0 0 0}]{hyperref}
+\usepackage{moresize}
+\usepackage[scaled]{helvet}
+\usepackage[text={6.5in,8.75in},headheight=15pt,centering]{geometry}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{cite}
+\usepackage{amssymb}
+\usepackage{textgreek}
+\usepackage{cleveref}
+%\usepackage{float}
+\usepackage{makeidx}
+%\usepackage{hyperref}
+\usepackage{hyperref}
+\usepackage{indentfirst}
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=black,
+    urlcolor=black
+}
+\usepackage{url}
+
+%\documentclass{article}
+%\usepackage[utf8]{inputenc}
+%\documentclass[sigconf, authordraft]{acmart}
+%\usepackage{booktabs} % For formal tables
+% Copyright
+%\setcopyright{none}
+%\setcopyright{acmcopyright}
+%\setcopyright{acmlicensed}
+%\setcopyright{rightsretained}
+%\setcopyright{usgov}
+%\setcopyright{usgovmixed}
+%\setcopyright{cagov}
+%\setcopyright{cagovmixed}
+%\usepackage{float,graphicx}
+%\usepackage{cite}
+
+\parskip5pt
+
+\begin{document}
+\title{Cosmic Ray Detector Development}
+%%\titlenote{Produces the permission block, and copyright information}
+%%\subtitle{Extended Abstract}
+%%\subtitlenote{The full version of the author's guide is available as
+%%  \texttt{acmart.pdf} document}
+
+\author{Jessica Eskew\footnote{Presenter, Email: jeskew6@student.gsu.edu} and Xiaochun He}
+\affil{%
+  Georgia State University \\
+  P.O. Box 5060 \\
+  Atlanta, GA 30302-5060
+  }
+
+\date{\today}
+\maketitle{}
+
+\begin{abstract}
+The earth is constantly bombarded with cosmic ray particles (mainly high energy proton particles) which have the galactic and solar origins. These cosmic ray particles produce extensive cosmic ray showers around 15 km in altitude, and most of the secondary particles continue interacting with the air molecules while cascading toward the surface of the earth. The most abundant particles that reach to the earth surface are muons (about 80\%) together with a few percent of neutrons and electrons. In recent years, there are many interesting applications by measuring cosmic ray muons, such as muon tomography and atmospheric weather study. The Nuclear Physics Group at Georgia State University (GSU) has been developing low-cost and portable muon detectors, and is interested in installing these detectors around the world for advancing the technology of monitoring the dynamical changes of the earth weather system at a global scale. My research project is to build a MIT version of the cosmic ray muon detector and to compare the detector performance with GSU muon telescopes.
+
+\end{abstract}
+
+\input{intro}
+\input{detector}
+\input{result}
+\input{summary}
+\clearpage
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%
+\bibliographystyle{unsrt}%
+\bibliography{main} % The file containing the bibliography
+
+\end{document}
